@@ -3,12 +3,12 @@
 #include<vector>
 using namespace std;
 typedef long long ll;
-vector<ll>v;
+ll b,c,a;
 int di(ll n,ll p)
 {
     for(ll i=p+1;i<=sqrt(n);i++)
-        if(n%i==0 && n/i!=i && n/i!=p)
-        {v.push_back(i);v.push_back(n/i);return 1;}        
+        if(n%i==0 )
+        {b=i;c=(n/i);return 1;}        
     return 0;
 }
 int main()
@@ -17,12 +17,12 @@ int main()
     while(q--)
     {
         ll n,f=0;
-        cin>>n;
-        for(ll i=2;i<n/2;i++)
-            if(n%i==0 && ceil(sqrt(n/i))!=floor(sqrt(n/i)) ){
-                if(di((ll)n/i,i)){v.push_back(i);f=1;break;}
+        cin>>n;ll i;
+        for(i=2;i<sqrt(n);i++)
+            if(n%i==0){
+                {a=i;break;}
             }
-        if(f){cout<<"YES\n"<<v[0]<<" "<<v[1]<<' '<<v[2]<<"\n";v.clear();}
+        if(di((ll)n/i,i) && c!=a && c!=b){cout<<"YES\n"<<a<<" "<<b<<' '<<c<<"\n";}
         else cout<<"NO\n";
     }
 }
