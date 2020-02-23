@@ -1,73 +1,32 @@
-// [abhishekvtangod]
-// g++ -Wall -Wextra -Wshadow filename.cpp
-#include<bits/stdc++.h>
-using namespace std; 
+#include <bits/stdc++.h>
 
-#define mod 1000000007
-#define gcd(a,b) __gcd(a,b)
+using namespace std;
 
-typedef long long int ll;
-
-int main()
-{   
-    ios::sync_with_stdio(false); 
-    cin.tie(nullptr);
-
-    ll t;cin>>t;
-    while(t--)
-    {
-        ll n;
-        cin>>n;
-        ll x = n;
-        ll count=0;
-        ll flag=0;
-        ll a=0,b=0,c=0;
-        for(int i=2;i <= (x); i++)
-        {   
-            // cout<<n<<" "<<i<<" "<<a<<" "<<" "<<b<<" "<<c<<endl;
-            if(n%i == 0)
-            {
-                count++;
-                
-                if(n%i == 0 && a != 0 && b != 0)
-                {
-                    c=i;
-                }   
-                if(n %i ==0 && a != 0 && b == 0)
-                {
-                  b=i;            
-                }
-                if(n %i == 0 && a == 0)
-                {
-                  a=i;            
-                }
-                n/=i;
-                
-                if(n == a || n == b || n == 1)
-                {
-                    flag = 1;
-                    break;
-                }
-
-
-                   
-            }
-        }
-        // cout<<count<<endl;
-        if(count == 3)
-        {
-            cout<<"YES\n";
-            cout<<a<<" "<<b<<" "<<c<<endl;
-        }
-        else
-        {
-            cout<<"NO\n";
-        }
-        
-
-
-
-    }
-
-    return 0;
+int main() {
+/*#ifdef _DEBUG
+	freopen("input.txt", "r", stdin);
+//	freopen("output.txt", "w", stdout);
+#endif
+*/
+	int n;
+	cin >> n;
+	string s;
+	cin >> s;
+	
+	int res = 0;
+	string ans;
+	for (int i = 0; i < n - 1; ++i) {
+		int cur = 0;
+		for (int j = 0; j < n - 1; ++j)
+			if (s[j] == s[i] && s[j + 1] == s[i + 1])
+				++cur;
+		if (res < cur) {
+			res = cur;
+			ans = string(1, s[i]) + string(1, s[i + 1]);
+		}
+	}
+	
+	cout << ans << endl;
+	
+	return 0;
 }

@@ -18,7 +18,7 @@ bool dfs(bool visited[],vector<ll> adj[],ll v,ll parent)
 {   
     // if(visited[v] == true) return;
     visited[v] = true;
-    cout<<v<<"->";
+    // cout<<v<<"->";
 
     for(auto it = adj[v].begin(); it != adj[v].end(); it++)
     {
@@ -33,6 +33,18 @@ bool dfs(bool visited[],vector<ll> adj[],ll v,ll parent)
 
     }
     return false;
+}
+void p_dfs(bool visited[],vector<ll> adj[],ll v)
+{   
+    if(visited[v] == true) return;
+
+    visited[v] = true;
+    // cout<<v<<" ";
+    for(ll i = 0; i < adj[v].size(); i++)
+    {
+        p_dfs(visited,adj,adj[v][i]);
+    }
+    
 }
 
 int main()
@@ -49,26 +61,38 @@ int main()
         cin>>u>>v;
         addEdge(adj,u,v);
     }    
+    
+    for(ll i= 1; i<=n;i++)
+    {
+        bool visited[n+1]={false};    
 
-    cout<<dfs(visited,adj,1,-1);
-    // ll flag = 0;
-    // for(ll i =1; i <= n ; i++)
-    // {
-    //     if(visited[i] == false)
-    //     {
-    //         flag = 1;
-    //         break;
-    //     }
-    // }
-    // if(m > n-1)
-    //     flag=1;
-
-    // if(flag)
-    //     cout<<"NO\n";
-    // else
-    // {
-    //     cout<<"YES\n";
-    // }
+        if(!visited[i])
+        if(dfs(visited,adj,i,-1))
+        {
+            cout<<"NO\n";
+            return 0;
+        }
+        // cout<<"---i="<<i<<endl;
+    }
+    
+    visited[n+1]={false};    
+    p_dfs(visited,adj,1);
+    ll flag = 0;
+    for(ll i =1; i <= n ; i++)
+    {   
+        // cout<<i<<" "<<visited[i]<<endl;
+        if(visited[i] == false)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if(flag)
+        cout<<"NO\n";
+    else
+    {
+        cout<<"YES\n";
+    }
     
     return 0;
 }
