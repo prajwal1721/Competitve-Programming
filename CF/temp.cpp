@@ -1,44 +1,23 @@
+// [abhishekvtangod]
+// g++ -Wall -Wextra -Wshadow filename.cpp
+#include<bits/stdc++.h>
+using namespace std; 
 
-#include<iostream>
-#include<algorithm>
-#include<vector>
-using namespace std;
-typedef long long ll;
+#define mod 1000000007
+#define gcd(a,b) __gcd(a,b)
+#define lcm(a,b) (a*b)/gcd(a,b)
+#define bits(x) __builtin_popcountll(x)
+
+typedef long long int ll;
+
 int main()
-{
-    ll n,time,tmp;
-    ll ct;
-    vector<ll> v;
-    cin>>n>>time;
-    while(n--)
-    {
-        cin>>tmp;
-        v.push_back(tmp); 
-    }
-    auto it=v.begin(),pp=v.begin();
-    ll count=0,max=0;
-    ll pre_count=count;
-    ct=time;
-    pp=it;
-    for(auto i:v)
-        cout<<i<<" ";
-    while (it!=v.end())
-    {
-        count=0;
-        while(pp!=v.end()&& ct);
-        {
-            if(*pp>ct)break;
-            ct-=*pp;
-            count++; 
-            pp++;
-        }
-        cout<<"I";
-        count=count+pre_count-1;
-        pre_count=count;
-        ct=ct+*it;
-        it++;
-        cout<<ct<<" "<<max<<"\n";
-        if(count>max)max=count;
-    } 
-    cout<<max<<"\n";
+{   
+    ios::sync_with_stdio(false); 
+    cin.tie(nullptr);
+
+    
+    
+    
+
+    return 0;
 }

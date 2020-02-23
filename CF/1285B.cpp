@@ -3,7 +3,9 @@
 using namespace std;
 int main()
 {
+
     typedef long long ll;
+    ios::sync_with_stdio(false); cin.tie(nullptr);
     ll q;
     cin>>q;
     while(q--)

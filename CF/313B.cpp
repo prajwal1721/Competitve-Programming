@@ -3,6 +3,7 @@
 using namespace std;
 int main()
 {
+    ios::sync_with_stdio(false); cin.tie(nullptr);
     string s;int n,c_dot=0,c_hash=0;
     cin>>s>>n;
     vector<int> v;

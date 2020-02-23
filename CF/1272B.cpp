@@ -5,6 +5,7 @@
 using namespace std;
 int main()
 {
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
     typedef long long ll ;
     ll t;
     cin>>t;
@@ -13,40 +14,37 @@ int main()
         string s;
         cin>>s;
         ll p=0,n=s.length();
-        stack <char> stk;
-        stk.push(s[p++]);
-        ll up=0,down=0,right=0,left=0;
-        if(n>0)
+        ll x=0,y=0,u=0,d=0,l=0,r=0;
+        for(int i=0;i<s.length();i++)
         {
-            if(s[0]=='U')
-                up++;
-            else if(s[0]=='D')
-                down++;
-            else if(s[0]=='R')
-                right++;
-            else 
-                left++;
+            if(s[i]=='U'){y++;u++;}
+            else if(s[i]=='D'){y--;d++;}
+            else if(s[i]=='L'){x--;l++;}
+            else if(s[i]=='R'){x++;r++;}
         }
-        if(right==left || down==up)
-
-                if(s[p]=='U'||s[p]=='R')
-                stk.push(s[p]);
-                else
-                stk.pop();
-                if(stk.empty()){p++;break;}
-            }
-            else
+            l=r=min(l,r);
+            u=d=min(u,d);
+        string ans="";
+        ll i=0;
+        if(l && u || r&& d  )
+        {
+            while( u){ans+='U';u--;}
+            while( l){ans+='L';l--;}
+            while( d){ans+='D';d--;}
+            while( r){ans+='R';r--;}
+        }
+        else
+        {
+            if(!u && !r)ans="";
+            else if(!u)
             {
-                if(s[p]=='D'||s[p]=='L')
-                stk.push(s[p]);
-                else
-                stk.pop();
-                if(stk.empty()){p++;break;}
+                ans="RL";
             }
-            p++;
-        }while(p<s.length());
-        cout<<p<<'\n';
-        for(ll i=0;i<p;i++)cout<<s[i];
-        cout<<'\n';
+            else 
+            {
+                ans="UD";
+            }
+        }
+        cout<<ans.length()<<"\n"<<ans<<"\n";
     }
 }
