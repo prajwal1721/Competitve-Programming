@@ -1,15 +1,16 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
-typedef int ll;
+typedef long long ll;
 int main()
 {
     ll n;cin>>n;
     while (n--)
     {
         ll a,b;cin>>a>>b;
-        ll all=b/a,remain=b%a;
-        cout<<all*all*(a-remain)+(all+1)*(all+1)*remain<<"\n";
+        if(a>=b)cout<<b<<"\n";
+        else
+            cout<<ceil((float)b/a)+b-(ceil((float)b/a))*a<<"\n";
     }
     
 }
