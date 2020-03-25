@@ -1,14 +1,15 @@
 #include<iostream>
 // #include<std:bitsc++>
-// #include<bits.c++>
+#include<bits/stdc++.h>
+typedef long long ll;
 using namespace std;
 int main()
 {
             cin.tie(nullptr);
             ios::sync_with_stdio(false);
 // freopen("input.txt", "r", stdin);
-// ios::sync_with_stdio(0);
-// cin.tie(0);
+ios::sync_with_stdio(0);
+cin.tie(0);
 cout<<"FASTER now";
 string s;
 int x;

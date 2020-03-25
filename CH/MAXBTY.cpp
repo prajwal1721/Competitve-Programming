@@ -26,11 +26,11 @@ int main()
             {
                 bool next=true;
                 int x=l-1,y=r,ans=cumu[y]-cumu[x];
-                while (next && x>=0 && y<=n )
+                while ( x>=0 || y<=n )
                 {
                     if(x>=1 &&ans<cumu[y]-cumu[x-1]){ans=cumu[y]-cumu[x-1];next=true;}
-                    if(y<n-1 &&ans<cumu[y+1]-cumu[x]){ans=cumu[y+1]-cumu[x];next=true;}
-                    if(x>=1 && y<n-1 &&ans<cumu[y+1]-cumu[x-1]){ans=cumu[y+1]-cumu[x-1];next=true;}
+                    if(y<=n-1 &&ans<cumu[y+1]-cumu[x]){ans=cumu[y+1]-cumu[x];next=true;}
+                    if(x>=1 && y<=n-1 &&ans<cumu[y+1]-cumu[x-1]){ans=cumu[y+1]-cumu[x-1];next=true;}
                     x--;y++;
                 }
                 cout<<ans<<"\n";
