@@ -23,7 +23,7 @@ int main()
                 {
                         st=mid+1;
                 }
-        }
         cout<<st+m<<"\n";        
+        }
         }
 }
