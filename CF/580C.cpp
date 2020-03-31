@@ -1,11 +1,10 @@
 // /prajwal
-
+// reamining
 #include <bits/stdc++.h>
 typedef long long ll;
 using namespace std;
 ll ans=0;
-ll visited[]
-void dfs(vector<ll> data[],ll s,ll pre,ll m,vector<ll>v,ll f)
+void dfs(vector<ll> data[],ll visited[],ll s,ll pre,ll m,vector<ll>v,ll f)
 {
 
     visited[s]=1;

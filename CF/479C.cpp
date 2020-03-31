@@ -11,7 +11,7 @@ int main()
         vector<pair<ll,ll>>a,b;
         while (i<n)
         {
-            cin>>t;a.push_back(t,i);i++;
+            cin>>t;a.push_back(i,t);i++;
         }i=0;
         while (i<n)
         {
@@ -19,5 +19,5 @@ int main()
         }
         sort(a.begin(),a.end());
         sort(b.begin(),b.end());
-        
+    
 }

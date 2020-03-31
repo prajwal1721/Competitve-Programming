@@ -1,6 +1,3 @@
-//TLE use segmenet trees
-
-
 #include<bits/stdc++.h>
 typedef long long ll;
 using namespace std;
