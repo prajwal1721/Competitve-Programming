@@ -9,47 +9,57 @@ int main()
             while (t--)
             {
                 vector<ll>v;
+                set<ll>s;
                 ll n,cn,t;cin>>n;cn=n;while (cn--)
                 {
                     cin>>t;v.push_back(t);
+                    s.insert(t);
                 }
-                ll color[n+1]={0};
-                color[0]=1;
-                ll cur=1;
-                for(int i=1;i<n-1;i++)
+                if(n==0)cout<<0<<"\n";
+                else if(s.size()==1)
                 {
-                    if(v[i-1]==v[i+1] && v[i]==v[i-1] && color[i]==0){color[i]=color[i+1]=color[i-1];}
-                    else if(color[i]==0 && v[i-1]!=v[i] && v[i-1]==v[i+1]){color[i+1]=color[i-1];
-                    if(color[i-1]==1)
-                    {color[i]=color[i-1]+1;cur=max(color[i],cur);}
-                    else 
-                    color[i]=color[i-1]-1;}
-                    else if(color[i]==0 &&v[i-1]==v[i]){color[i]=color[i-1];}
-                    else if(color[i]==0 &&v[i-1]!=v[i] && color[i-1]>=2){color[i]=color[i-1]-1;}
-                    else if(color[i]==0 &&v[i-1]!=v[i] && color[i-1]==1){color[i]=color[i-1]+1;cur=max(color[i],cur);}
-                    else if(color[i]==0){color[i]=color[i-1]+1;cur=max(color[i],cur);}
-                }
-                if(color[n-1]==0 && v[n-2]!=v[0])
-                {
-                    if(v[n-1]==v[0] && color[n-2]!=1)color[n-1]=1;
-                    if(v[n-1]==v[n-2] )color[n-1]=color[n-2];
-                    if(color[n-2]==1)
-                    {color[n-1]=color[0]+1;cur=max(cur,color[n-1]);}
-                    else if(color[n-2]>2)
-                    {
-                        color[n-1]=color[n-2]-1;
-                        cur=max(cur,color[n-1]);
-                    }
-                    else if(2==color[n-2] )
-                    {
-                        if(cur==2){color[n-1]=3;cur=3;}
-                        else color[n-1]=cur-1;
-                    }
-                }
-                else if(color[n-1]==0) color[n-1]=color[0];
-                cout<<cur<<"\n";
-                for(int i=0;i<n;i++)
-                    cout<<color[i]<<" ";
+                    cout<<1<<"\n";
+                    for(ll i=0;i<n;i++)
+                        cout<<1<<" ";
                     cout<<"\n";
+                }
+                else if(n%2==0)
+                {
+                    cout<<2<<"\n";
+                    for(ll i=0;i<n;i+=2)
+                        cout<<1<<" "<<2<<" ";
+                    cout<<"\n";
+                }
+                else 
+                {
+                    ll fh=0;
+                    for(ll i=0;i<n;i++)
+                    {
+                        if(v[i]==v[(i+1)%n]){fh=1;break;}
+                    }
+                    if(fh)
+                    {
+                        ll i=1,pre=1,color=2,f=1;vector<ll> ans;ans.push_back(1);
+                    if(n>=2 && v[0]==v[1]){f=0;ans.push_back(pre);i++;}
+                    for(;i<n;i++)
+                    {
+                        if( v[i-1]==v[i]&& f){ans.push_back(pre);ans.push_back(pre);f=0;}
+                        else if(pre==1){ans.push_back(2);pre=2;}
+                        else {ans.push_back(1);pre=1;}
+                    }
+                                        cout<<color<<"\n";
+                    for(ll i=0;i<n;i++)
+                        cout<<ans[i]<<" ";
+                    cout<<"\n";
+                    }
+                    else 
+                    {
+                        ll color=3;
+                        cout<<3<<"\n";
+                        for(ll i=0;i<n-1;i+=2)
+                            cout<<1<<" "<<2<<" ";
+                        cout<<3<<"\n";
+                    }
+                }
             }
 }

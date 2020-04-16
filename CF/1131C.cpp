@@ -12,20 +12,14 @@ int main()
     {   
         cin>>t; v.push_back(t);
     }
-    sort(v.begin(),v.end());
-    ll ans[cn];
-    ll st=ceil((float)cn/2)-1;
-    ll fwd=st,bwd=st;
-    ll i=0;
-    // cout<<st<<"\n";
-    for(i=0;i<cn;)
+    sort(v.begin(),v.end(),greater<ll >());
+    string ans="";
+    for(ll i=0;i<v.size();i++)
     {
-        // cout<<bwd<<":"<<fwd<<"\n";
-        if(i<cn)
-            ans[bwd--]=v[i++];
-        if(i<cn)
-            ans[++fwd]=v[i++];
+        ans=ans+to_string(v[i])+" ";
+        if(i<v.size()-1)
+        ans=to_string(v[++i])+" "+ans;
+        // cout<<ans<<"==";
     }
-    for(i=0;i<cn;i++)cout<<ans[i]<<" ";
-    cout<<"\n";
+    cout<<ans<<"\n";
 }

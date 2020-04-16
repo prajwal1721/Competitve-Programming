@@ -1,36 +1,57 @@
-#include<iostream>
-#include<cstring>
-using namespace std;
-int main()
+// link:
+// [prajwal1721]
+// g++ -Wall -Wextra -Wshadow filename.cpp
+
+
+//code not unsterdtood 
+// dp 
+
+#include<bits/stdc++.h>
+using namespace std; 
+#define mod 1000000007
+#define gcd(a,b) __gcd(a,b)
+#define lcm(a,b) (a*b)/gcd(a,b)
+#define bits(x) __builtin_popcountll(x)
+typedef long long int ll;
+int dp[1000009],c[1000009],m=0,cnt=1;
+void solve()
 {
-    long long no=0,st=0,max=0,count=0;
+    ll j=0;
     string s;
-    cin>>s;
-    for(int i=0;i<s.length();i++)
-        if(s[i]=='(')
+    cin>>s;int sz=s.size();
+    for(int i=0;i<sz;i++)
+    {
+        if(s[i]=='(')c[++j]=i;
+        else if(j)
+        {
+            dp[i]=i-c[j]+1+dp[c[j]-1];
+            j--;
+            if(dp[i]==m)cnt++;
+            if(dp[i]>m)
             {
-                i++;
-                st=0;
-                no++;
-                st++;
-                count=0;
-                l:i++;
-                    while(st>0)
-                    {
-                        if(i==s.length()) break;
-                        count++;
-                        if(s[i]=='(')st++;
-                        else st--;
-                       i++; 
-                    }
-                if(s[i]=='(' && i!=s.length())
-                    {   cout<<"\n";goto l;st=1;}
-                if(st) {count=0;} 
-                 if(st==0)count++;
-                // cout<<no<<""<<count<<endl;
-                if(max<count)
-                    max=count;
-                    // cout<<no<<' ';
+                m=dp[i];
+                cnt=1;
             }
-    cout<<max<<" "<<no<<'\n';
+        }
+    }
+    cout<<m<<" "<<cnt<<endl;
+}
+
+
+int main()
+{ 
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+
+    // ll t;cin>>t;
+    // cout<<t<<"Hi test complete\n";
+    // while(t--)
+        {
+            solve();
+        }
+
+
+    return 0;
 }

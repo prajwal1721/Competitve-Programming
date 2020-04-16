@@ -1,55 +1,45 @@
-#include<iostream>
+#include<bits/stdc++.h>
 #include<vector>
 using namespace std;
+typedef long long ll;
+ll  solve(vector<ll> v,ll n)
+{
+	ll s=0;
+	for(ll i=0;i<n;i++)
+	{
+		s+=v[i];
+		if(s<=0)return 1;
+	}s=0;
+	for(ll i=n-1;i>=0;i--)
+	{
+		s+=v[i];
+		if(s<=0)return 1;
+	}
+	return 0;
+}
 int main()
 {
 
-    typedef long long ll;
     ios::sync_with_stdio(false); cin.tie(nullptr);
     ll q;
     cin>>q;
     while(q--)
     {
-        vector<ll> v;
-        ll n,t;
-        cin>>n;
-        ll p=0,pos=0;
-        while(n--)
-        {
-            cin>>t;
-            p+=t;
-            if(t>0) pos++;
-            v.push_back(t);
-        }
-        if(pos==v.size())
-        {
-            cout<<"YES\n";
-            continue;
-        }
-        else if(pos==0)
-        {
-            cout<<"NO\n";
-            continue;
-        }
-        ll f=1;
-        for(auto it=v.begin();it!=v.end();it++)
-        {
-            ll tp=0,count=0;
-                auto i=it;
-        for(;i!=v.end();i++)
-                {
-                    tp+=*i;
-                    count ++;
-                    if(tp>=p && count !=v.size())
-                        {
-                            f=0;
-                            goto l;
-                        }
-                }
-        }
-        l:
-        if(f==1) cout<<"YES\n";
-        else cout<<"NO\n";
-    }
+		ll s=0,n,cn,t,pos=0;
+		cin>>n;cn=n;
+		vector<ll> v;
+		while(cn--)
+		{
+			cin>>t;v.push_back(t);s+=t;
+			if(t>0)pos++;
+		}
+		if(pos==n)cout<<"YES\n";
+		else
+	    {
+		if(solve(v,n)==0 )cout<<"YES\n";
+	    else cout<<"NO\n";
+		v.clear();
+		}
+	}
 
 }

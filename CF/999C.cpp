@@ -9,18 +9,21 @@ int main()
         ios::sync_with_stdio(false);
         ll t,n,sum=0,m=0;cin>>n>>m;
         string s;cin>>s;
-        queue<ll> q[26];
         ll a[26]={0};
         for(ll i=0;i<n;i++)
         {
-            if(m==0)break;
-            if(a[s[i]-'a'] && q[s[i]-'a'].size()> && m){s[q[s[i]-'a'].front()]='0';m--;q[s[i]-'a'].pop();q[s[i]-'a'].push(i);}
-            else {q[s[i]-'a'].push(i);a[s[i]-'a']=1;}   
+            a[s[i]-'a']++;
         }
-        for(ll i=0;i<n;i++)
+        ll remove[26]={0};
+        for(ll i=0;i<26 && m;i++)
         {
-            if(s[i]=='0')continue;
-            cout<<s[i];
+            while(m&&a[i]){remove[i]++;m--;a[i]--;}
         }
+        for(ll i=0;i<s.length();i++)
+        {
+            if(remove[s[i]-'a']>0){remove[s[i]-'a']--;}
+            else cout<<s[i];
+        }
+        cout<<"\n";
 }
         

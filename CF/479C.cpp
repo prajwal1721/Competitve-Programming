@@ -8,16 +8,20 @@ int main()
         cin.tie(nullptr);
         ios::sync_with_stdio(false);
         ll n,i=0,t;cin>>n;
-        vector<pair<ll,ll>>a,b;
-        while (i<n)
+        vector<pair<ll,ll>>v;
+        for(ll i=0;i<n;i++)
         {
-            cin>>t;a.push_back(i,t);i++;
-        }i=0;
-        while (i<n)
-        {
-            cin>>t;b.push_back(t,i);i++;
+            ll a,b;
+            cin>>a>>b;
+            v.push_back({a,b});
         }
-        sort(a.begin(),a.end());
-        sort(b.begin(),b.end());
-    
+        sort(v.begin(),v.end());
+        ll cur=0;
+        for(ll i=0;i<n;i++)
+        {
+            if(min(v[i].first,v[i].second) >=cur)
+            cur=max(cur,min(v[i].first,v[i].second));
+            else cur=max(v[i].first,v[i].second);
+        }    
+        cout<<cur<<"\n";
 }

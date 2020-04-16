@@ -1,0 +1,47 @@
+{
+	// Place your CP workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"CP temp1": {
+		"scope": "c,c++,cpp,h",
+		"prefix": "code",
+		"body": [
+			"// link:",
+			"// [prajwal1721]",
+			"// g++ -Wall -Wextra -Wshadow filename.cpp",
+			"\n",
+			"\n",
+			"#include<bits/stdc++.h>",
+			"using namespace std; ",
+			"#define mod 1000000007",
+			"#define gcd(a,b) __gcd(a,b)",
+			"#define lcm(a,b) (a*b)/gcd(a,b)",
+			"#define bits(x) __builtin_popcountll(x)",
+			"\n",
+			"typedef long long int ll;",
+			"void solve()",
+			"{",
+				"\t\n",
+			"}",
+			"\n",
+			"int main()",
+			"{ ",  
+			"\tios::sync_with_stdio(false);" ,
+			"\tcin.tie(nullptr);",
+			"\tll t;cin>>t;",
+			"\t// cout<<t<<\"Hi test complete\\n\";",
+			"\twhile(t--)",
+			"\t\t{",
+			"\t\t\tsolve();",
+			"\t\t}",
+			"\n",
+			"\treturn 0;",
+			"}",
+		],
+		"description": "Code better"
+	}
+}

@@ -5,35 +5,39 @@ int main()
 {
     typedef long long ll;
     ll ans=0,n,t,k;cin>>n>>k;ll cn=n;
-    vector<ll> v,time,lp;
-    while(n--)
-    {
-        cin>>t;v.push_back(t);
-    }
-    ll i=0;
-    n=cn;
+    vector<ll> v,sleep,r,time,lp;ll cur=0;
+    v.push_back(0);
+    r.push_back(0);
     while(n--)
     {
         cin>>t;
-        time.push_back(t);
-        if(t==1)ans+=v[i];
-        if(t==0)lp.push_back(i);
-        i++;
-    }    
-    ll m=0,count=0;
-    auto j=lp.begin();
-    if(lp.size())
-    for(i=((lp.size())?(*lp.begin()):cn+k+1);i<=cn;i++)
-    {
-        // cout<<i<<" ";
-        if(count>=k){m=max(m,t);count=min(i-*j,k);t-=v[(*j)];j++;}//if(t>0)t-=v[(*j)]
-        if(t<0)t=0;
-        if(time[i]==0)
-        {
-            t+=v[i];    
-        }
-        count++;
-        // cout<<count<<" "<<m<<" "<<i<<"\n";
+        cur+=t;
+        v.push_back(cur);
+		r.push_back(t);
     }
-    cout<<m+ans<<"\n";
+    ll i=1;
+    n=cn;cur=0;
+    time.push_back(0);
+    sleep.push_back(0);
+    while(n--)
+    {
+        cin>>t;
+        sleep.push_back(t);
+        if(t)
+        cur+=r[i];
+        time.push_back(cur);
+        i++;
+    }    cn++;
+    r.clear();
+    n=cn;
+    ans=cur;
+    for(i=1;i<cn;i++)
+    {
+		if(!sleep[i])
+		{
+			//cout<<i<<" "<<time[i]<<" "<<v[min(i+k-1,cn-1)]<<" "<<v[i]<<" "<<time[n-1]<<" "<<time[min(i+k,n-1)]<<"\n";
+			ans=max(ans,time[i]+v[min(i+k-1,n-1)]-v[i-1]+time[n-1]-time[min(i+k-1,n-1)]);
+		}
+	}
+		cout<<ans<<"\n";
 }
