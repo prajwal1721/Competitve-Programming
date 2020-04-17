@@ -13,11 +13,12 @@ void sol()
         count[v]+=M;
         count[u]+=M;
     }
-    int ans=0,f=0;
+    int ans=1,f=0;
     for(int i=1;i<=n;i++){
-        if(count[i]&1){odd++;}
-            if(!f)ans=i;f=1;
+        if(count[i]&1){odd++;
+            if(!f){ans=i;f=1;}
         }
+    }
     if(odd<=2)cout<<"YES "<<ans<<"\n";
     else 
     cout<<"NO\n";

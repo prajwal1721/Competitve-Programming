@@ -13,7 +13,8 @@
 			"// link:",
 			"// [prajwal1721]",
 			"// g++ -Wall -Wextra -Wshadow filename.cpp",
-			"\n",
+			"/*comments:"
+			"*/\n",
 			"\n",
 			"#include<bits/stdc++.h>",
 			"using namespace std; ",
