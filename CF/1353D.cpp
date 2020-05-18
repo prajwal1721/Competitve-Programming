@@ -1,7 +1,9 @@
 // link:
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
+// ./a.out >input <output
 /*comments:
+
 */
 
 
@@ -12,46 +14,53 @@ using namespace std;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) (a*(b/gcd(a,b))
 #define bits(x) __builtin_popcountll(x)
-#define vi vector<int>
-#define vl vector<ll>
-#define vp vector<pair<ll,ll>>
+#define vi              vector<int>
+#define vl              vector<ll>
 #define all(v)          v.begin(),v.end()
 #define UNIQUE(X)       (X).erase(unique(all(X)),(X).end())
 
-
+#define pi tuple<ll,ll>
 
 typedef long long int ll;
-vl v1,v2;
-ll ans=0,n,k;
-void call(ll i,ll val)
+ll n,i=1;
+pair<int, int> a[200020];
+int z[200020];
+void gao(int l, int r)
 {
-    for(ll p=v1[i];p<=v2[i];p++)
-    {
-        if(i==k-1 && val+p==n)ans++;
-        else if(val+p<n)call(i+1,val+p);
-    }
+	if (l > r)
+	{
+		return;
+	}
+	int m = (l + r) / 2;
+	a[m].first = l - r;
+	a[m].second = m;
+	gao(l, m - 1);
+	gao(m + 1, r);
 }
 void solve()
 {
-    cin>>k>>n;
-    while(n!=0)
-    {
-        ll t1,t2;
-        for(int i=0;i<k;i++){cin>>t1>>t2;v1.push_back(t1);v2.push_back(t2);}
-        call(0,0);
-        cout<<ans<<"\n";
-        cin>>k>>n;
-    }
-}
 
+		cin >> n;
+		gao(1, n);
+		sort(a + 1, a + 1 + n);
+		for (int i = 1; i <= n; i++)
+		{
+			z[a[i].second] = i;
+		}
+		for (int i = 1; i <= n; i++)
+		{
+			cout << z[i] << ' ';
+		}
+		cout << "\n";
+}
 
 int main()
 { 
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    // ll t;cin>>t;
+    ll t;cin>>t;
     // cout<<t<<"Hi test complete\n";
-    // while(t--)
+    while(t--)
         {
             solve();
         }

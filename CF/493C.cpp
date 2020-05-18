@@ -1,7 +1,8 @@
 // link:
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
-/*comments:
+// ./a.out >input <output
+/*comments: good sum
 */
 
 
@@ -12,36 +13,28 @@ using namespace std;
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) (a*(b/gcd(a,b))
 #define bits(x) __builtin_popcountll(x)
-#define vi vector<int>
-#define vl vector<ll>
-#define vp vector<pair<ll,ll>>
+#define vi              vector<int>
+#define vl              vector<ll>
 #define all(v)          v.begin(),v.end()
 #define UNIQUE(X)       (X).erase(unique(all(X)),(X).end())
 
 
 
 typedef long long int ll;
-vl v1,v2;
-ll ans=0,n,k;
-void call(ll i,ll val)
-{
-    for(ll p=v1[i];p<=v2[i];p++)
-    {
-        if(i==k-1 && val+p==n)ans++;
-        else if(val+p<n)call(i+1,val+p);
-    }
-}
 void solve()
 {
-    cin>>k>>n;
-    while(n!=0)
+    ll t,n,m;cin>>n;
+    vector<ll>a,b;for(int i=0;i<n;i++){cin>>t;a.push_back(t);}sort(a.begin(),a.end(),greater<ll>());
+    cin>>m;
+    for(int i=0;i<m;i++){cin>>t;b.push_back(t);}sort(b.begin(),b.end(),greater<ll> ());
+    ll p_a=2*n,p_b=2*m,i=0,j=0,x=2*n,y=2*m;
+    for(;i<n;i++)
     {
-        ll t1,t2;
-        for(int i=0;i<k;i++){cin>>t1>>t2;v1.push_back(t1);v2.push_back(t2);}
-        call(0,0);
-        cout<<ans<<"\n";
-        cin>>k>>n;
+        p_a++;
+        for(;j<m&& b[j]>=a[i];j++)p_b++;
+        if(p_a-p_b>=x-y)x=p_a,y=p_b;
     }
+    cout<<x<<":"<<y<<"\n";
 }
 
 
