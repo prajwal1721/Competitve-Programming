@@ -13,6 +13,7 @@
 			"// link:",
 			"// [prajwal1721]",
 			"// g++ -Wall -Wextra -Wshadow filename.cpp",
+			"// ./a.out >input <output",
 			"/*comments:"
 			"*/\n",
 			"\n",
