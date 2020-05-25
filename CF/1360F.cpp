@@ -2,16 +2,16 @@
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
 // ./a.out >input <output
-/*comments:incomplete
+/*comments: remaining
 */
-    
+
 
 
 #include<bits/stdc++.h>
 using namespace std; 
 #define mod 1000000007
 #define gcd(a,b) __gcd(a,b)
-#define lcm(a,b) (a*(b/gcd(a,b))    
+#define lcm(a,b) (a*(b/gcd(a,b))
 #define bits(x) __builtin_popcountll(x)
 #define vi              vector<int>
 #define vl              vector<ll>
@@ -23,22 +23,17 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll n,k,t;cin>>n>>k;
-    vector<ll> v;v.push_back(0);
-    for(int i=0;i<n;i++){cin>>t;v.push_back(t+v[i]);}
-    ll pos[n+5]={0};
-    for(int i=0;i<k;i++)pos[i]=0;
-    for(int i=k;i<=n;i++)
-    {
-        pos[i]=v[i]-v[i-k];
-    }
-    for(int i=0;i<=n;i++)
-        cout<<pos[i]<<" ";cout<<"\n"; 
-    ll mx1=0,mx2=-1;
+    ll n,m;cin>>n>>m;
+    set<string> st;string s;
     for(int i=0;i<n;i++)
     {
-
+        cin>>s;st.insert(s);
     }
+    vector<string> v(st.begin(),st.end());
+    sort(v.begin(),v.end());
+    ll visited[n+1]={0};
+
+
 }
 
 
@@ -46,9 +41,9 @@ int main()
 { 
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    // ll t;cin>>t;
+    ll t;cin>>t;
     // cout<<t<<"Hi test complete\n";
-    // while(t--)
+    while(t--)
         {
             solve();
         }

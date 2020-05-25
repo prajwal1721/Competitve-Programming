@@ -2,30 +2,30 @@
 // reamining
 #include <bits/stdc++.h>
 typedef long long ll;
+#define MAX 100005
 using namespace std;
 ll ans=0;
-void dfs(vector<ll> data[],ll visited[],ll s,ll pre,ll m,vector<ll>v,ll f)
+vector<ll> dat[MAX];
+ll visited[MAX]={0};
+vector<ll>v;
+void dfs(ll s,ll m ,ll cur,ll par)
 {
-
+    if(visited[s])return;
+    // cout<<s<<" "<<cur<<"\n";
+    if(v[s]==1)cur++;
+    else cur=0;
+    if(cur>m)return ;
+    if(dat[s].size()==1 && dat[s][0]==par){ans++;}
     visited[s]=1;
-    // cout<<s<<"\n";
-    if(v[s-1]==1)pre++;
-    else pre=0;
-    if(pre>m)f=1;
-    if( !f && data[s].size()==1 && s!=1)ans++;
-    else if(!f)
-    for(auto i=data[s].begin();i!=data[s].end();i++)    
-    {
-        if(!visited[*i])dfs(data,visited,*i,pre,m,v,f);
-    }
+    for(auto k:dat[s])
+        dfs(k,m,cur,s);
 }
 int main()
 {
         cin.tie(nullptr);
         ios::sync_with_stdio(false);
         ll n,m,t,cn;cin>>n>>m;cn=n;
-        vector<ll> v;
-        vector<ll>data[n+1];
+        v.push_back(0);
         while (cn--)
         {
             cin>>t;v.push_back(t);            
@@ -34,9 +34,10 @@ int main()
         ll u;
         while (cn--)
         {
-            cin>>u>>t;data[u].push_back(t);data[t].push_back(u);
+            cin>>u>>t;dat[u].push_back(t);dat[t].push_back(u);
         }
-        ll visited[n+1]={0};
-        dfs(data,visited,1,0,m,v,0);
+        // ll visited[n+1]={0};
+        ll cur=0;
+        dfs(1,m,cur,0);
     cout<<ans<<"\n";
 }
