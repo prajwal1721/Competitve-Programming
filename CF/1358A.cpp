@@ -23,25 +23,18 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll n;cin>>n;
-    for(ll i=2;i*i<=n;)
+    ll ans,n,m;cin>>n>>m;
+    if(m%2==0){ll t=n;n=m;m=t;}
+    if(n%2==0)
     {
-        // cout<<i<<" ";
-        if(n%i==0)
-        {
-            // cout<<"::\n";
-            if(n%(i*i)==0)
-                n/=i;
-            // else i++;
-            // else if(n%((n/i)*(n/i))==0)
-                // n=n/(n/i);
-            else i++;
-        }
-        else 
-            i++;
+        ans=(n/2)*(m);
     }
-    cout<<n<<"\n";
-    
+    else
+    {
+        if(m<n){ll t=n;n=m;m=t;}
+        ans=(n/2)*(m)+(m/2)+1;
+    }
+    cout<<ans<<"\n";
 
 }
 
@@ -50,9 +43,9 @@ int main()
 { 
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    // ll t;cin>>t;
+    ll t;cin>>t;
     // cout<<t<<"Hi test complete\n";
-    // while(t--)
+    while(t--)
         {
             solve();
         }

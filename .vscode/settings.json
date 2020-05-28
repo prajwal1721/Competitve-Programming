@@ -3,7 +3,8 @@
         "iostream": "cpp",
         "cmath": "cpp",
         "ostream": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "*.tcc": "cpp"
     },
     "competitive-programming-helper.firstTime": false
 }

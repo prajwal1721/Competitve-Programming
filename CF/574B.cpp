@@ -20,32 +20,41 @@ using namespace std;
 
 
 
-typedef long long int ll;
-// ll par[4005],sz[4005]={0};
+typedef  int ll;
+ll edge[4001][4001]={0};
 void solve()
 {
     ll a,b,n,m;cin>>n>>m;
+    
     // for(int i=1;i<n+2;i++){par[i]=i;sz[i]=1;}
-    set<ll>adj[n+1];
-    for(int i=0;i<n;i++)
+    ll sz[n+1]={0};
+    for(int i=0;i<m;i++)
     {
         cin>>a>>b;
-        adj[a].insert(b);
-        adj[b].insert(a);
+        sz[a]++;
+        sz[b]++;
+        if(a>b){ll t=a;a=b;b=t;}
+        edge[a][b]=1;
     }
-    ll sz[n+1];
-    for(ll i=1;i<=n;i++){sz[i]=adj[i].size();}
-    ll visited[n+1]={0};
+    // for(ll i=1;i<=n;i++){sz[i]=adj[i].size();}
     ll mn=3*n;
-    map<tuple<ll,ll>,ll>mp;
-    for(int i=1;i<=n;i++)
+    for(ll i=1;i<=n;i++)
     {
-        visited[i]=1;
-        for(auto k:adj[i])
+        for(ll j=i+1;j<=n;j++)
         {
-
+            if(edge[i][j]==1)
+            for(ll k=j+1;k<=n;k++)
+            {
+                if(edge[j][k]==1 && edge[i][k]==1)
+                {
+                    // cout<<sz[i]+sz[j]+sz[k]-6<<"\n";
+                    mn=min(mn,sz[i]+sz[j]+sz[k]-6);
+                }
+            }
         }
     }
+    if(mn==3*n)mn=-1;
+    cout<<mn<<"\n";
 
 }
 

@@ -1,41 +1,41 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
-using namespace std;
+// link:
+// [prajwal1721]
+// g++ -Wall -Wextra -Wshadow filename.cpp
+/*comments:
+*/
+
+
+
+#include<bits/stdc++.h>
+using namespace std; 
+#define mod 1000000007
+#define gcd(a,b) __gcd(a,b)
+#define lcm(a,b) (a*b)/gcd(a,b)
+#define bits(x) __builtin_popcountll(x)
+
+
+typedef long long int ll;
+
 int main()
 {
-    typedef long long ll;
-    ll n,after ,before;
-    cin>>n>>before>>after;
-    vector <ll> day;
-    ll p;
-    // ios::sync_with_stdio(0);
-    // cin.tie(0);
-    for(ll i=0;i<n;i++)
-    {
-        cin>>p;
-        day.push_back(p);
+    int n, x, y;
+    scanf("%d%d%d", &n, &x, &y);
+    int arr[n];
+    for(int i = 0 ; i < n ; ++i) {
+        scanf("%d", &arr[i]);
     }
-    ll c_a,c_b;
-    vector <ll>::iterator i;
-    for(*i=day.at(before);i<day.end();i++)
-    {
-        c_b=c_a=0;
-        for(auto l=i-before;l<i;i++)
-        {
-            if(*i<*l){c_b++;}
+ 
+    for(int i = 0 ; i < n ; ++i) {
+        bool isGood = true;
+        for(int j = max(0, i - x) ; j <= min(i + y, n - 1) ; ++j) {
+            if(i != j && arr[i] > arr[j]) {
+                isGood = false;
+            }
         }
-        cout<<c_b<<" :: "<<*i<<'\t';
-        vector <ll>::iterator l;
-        if(c_b==before)
-        for(l=i;l<*i+day.end() && l<day.end();i++)
-        {
-            if(*i<*l){c_a++;}
-        }
-        if(c_a==after || l!=day.end())
-        {
-            cout<<i-day.begin();
+        if(isGood) {
+            printf("%d\n", i + 1);
+            return 0;
         }
     }
+    return 0;
 }
-

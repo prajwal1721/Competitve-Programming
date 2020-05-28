@@ -2,7 +2,16 @@
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
 // ./a.out >input <output
-/*comments:
+/*comments: getting wrong on this test case
+    1
+6
+1 5
+1 1
+1 2
+1 2
+1 2
+1 2
+ ans=3
 */
 
 
@@ -21,36 +30,42 @@ using namespace std;
 
 
 typedef long long int ll;
+vector<ll> adj[1005];
+vector<ll> adj2[1005];
+ll visited[1005]={0};
+
+void dfs1(ll n)
+{
+    if(visited[n])return;
+    visited[n]=1;
+    for(auto i:adj[n])
+    {
+        dfs1(i);
+    }
+}
 void solve()
 {
-    ll n;cin>>n;
-    for(ll i=2;i*i<=n;)
+    ll w,c,t,n;cin>>n>>w;
+    for(int i=0;i<w;i++)
     {
-        // cout<<i<<" ";
-        if(n%i==0)
-        {
-            // cout<<"::\n";
-            if(n%(i*i)==0)
-                n/=i;
-            // else i++;
-            // else if(n%((n/i)*(n/i))==0)
-                // n=n/(n/i);
-            else i++;
-        }
-        else 
-            i++;
+            cin>>t>>c;adj[t].push_back(c);
+            // adj[c].push_back(t);
     }
-    cout<<n<<"\n";
-    
-
+   ll mx=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(!visited[i]){dfs1(i);mx++;}
+    }
+   
+    cout<<mx<<"\n";
 }
 
 
 int main()
 { 
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    // ll t;cin>>t;
+    // ios::sync_with_stdio(false);
+    // cin.tie(nullptr);
+    // ll t;cin>>/t;
     // cout<<t<<"Hi test complete\n";
     // while(t--)
         {
@@ -60,3 +75,6 @@ int main()
 
     return 0;
 }
+
+
+

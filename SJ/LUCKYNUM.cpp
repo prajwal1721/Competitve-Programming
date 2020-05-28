@@ -32,7 +32,7 @@ void solve() {
 	     p10[i] = p10[i-1] * 10 % n;
 
 	queue<pair<int,int>> st;
-	st.push({0,1});
+	st.push({0,1});	
 	f[0][1] = 6%n;
 	st.push({1,0});
 	f[1][0] = 8%n;
