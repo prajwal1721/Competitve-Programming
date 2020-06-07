@@ -23,20 +23,33 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll f=0,t=0,l,h,n,ini;cin>>n>>ini;
-    l=h=ini;
+    string s;cin>>s;
+    ll cnt_a=0,n=2+s.length(),a=0,b=0;
+    ll dp[n+2]={0};
+    s='a'+s+'a';
+    for(int i=0;i<n;i++)
+       {
+        dp[i+1]=dp[i];
+        if(s[i]=='a'){cnt_a++;dp[i+1]++;}
+        // cout<<dp[i]<<" ";
+       }
+    ll ans=n;
     for(int i=0;i<n;i++)
     {
-        ll time,low,high;
-        cin>>time>>low>>high;
-        if(f==1)continue;
-        l=max(low,l-(time-t));
-        h=min(high,h+(time-t));  
-        if(l>h || h<low && l>high)f=1;
-        t=time;
-        // cout<<l<<" "<<h<<" "<<f<<"\n";
-    }    
-    cout<<(f==0?"YES":"NO")<<"\n";
+        if(s[i]=='b')b++;
+        a=(i+1-b);
+        ll t_b=0;
+        for(int j=i+1;j<n;j++)
+        {
+            if(s[j]=='b')t_b++;
+            if(t_b==0)continue;
+            ans=min(ans,b+(dp[j+1]-a)+(n-j-1)-(dp[n]-dp[j+1]));
+        }
+    }
+    if(cnt_a==n)ans=0;
+    // cout<<ans<<" ";
+    cout<<max(n-2-ans,0LL)<<"\n";
+
 }
 
 
@@ -44,9 +57,9 @@ int main()
 { 
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    ll t;cin>>t;
+    // ll t;cin>>t;
     // cout<<t<<"Hi test complete\n";
-    while(t--)
+    // while(t--)
         {
             solve();
         }

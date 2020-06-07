@@ -23,27 +23,30 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll f=0,t=0,l,h,n,ini;cin>>n>>ini;
-    l=h=ini;
-    for(int i=0;i<n;i++)
-    {
-        ll time,low,high;
-        cin>>time>>low>>high;
-        if(f==1)continue;
-        l=max(low,l-(time-t));
-        h=min(high,h+(time-t));  
-        if(l>h || h<low && l>high)f=1;
-        t=time;
-        // cout<<l<<" "<<h<<" "<<f<<"\n";
-    }    
-    cout<<(f==0?"YES":"NO")<<"\n";
+    ll n,a,b,u=0;cin>>n>>a>>b;    
+    string s;cin>>s;
+    
+		ll A[n+2][2]={0};
+		A[0][0]=b;
+		A[0][1]=INT64_MAX-INT32_MAX;
+ 
+		for(ll i=0;i<n;i++){
+			if(s[i]=='0') {
+				A[i+1][0]=min(A[i][0]+a,A[i][1]+a+a)+b;
+				A[i+1][1]=min(A[i][1]+a,A[i][0]+a+a)+b+b;
+			}else {
+				A[i+1][0]=INT64_MAX-INT32_MAX;
+				A[i+1][1]=A[i][1]+b+b+a;
+			}
+		}
+		cout<<A[n][0]<<"\n";    
 }
 
 
 int main()
 { 
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    // ios::sync_with_stdio(false);
+    // cin.tie(nullptr);
     ll t;cin>>t;
     // cout<<t<<"Hi test complete\n";
     while(t--)

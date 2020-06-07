@@ -2,7 +2,7 @@
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
 // ./a.out >input <output
-/*comments: not solved 
+/*comments:
 */
 
 
@@ -23,30 +23,23 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll n,t;cin>>n;
-    map<ll,ll> mp,rep;
-    vector<ll> v;for(int i=0;i<n;i++){cin>>t;v.push_back(t);mp[v[i]]=0;}
-    ll rp=0;
-    for(int i=0;i<n;i++){
-        if(mp[v[i]]==1){rep[v[i]]=-1;rp++;}
-        else mp[v[i]]=1;
-    }
-    ll i,cnt=0,p1=-1,p2=-1;
-    vector<ll>ind;
-    ll p=0,ans=n;
-    if(rp==0)ans=0;
-    for(i=0;i<n;i++)
+    ll n,t,k;cin>>n>>k;
+    vector<ll> v;for(int i=0;i<n;i++){cin>>t;v.push_back(t);}
+    vector<ll > ps;ps.push_back(0);
+    sort(v.begin(),v.end());
+    ll s=0;
+    for(int i=0;i<n;i++)
     {
-        if(rep[v[i]]==-1)
-        {
-            rep[v[i]]=i;cnt++;
-        }
-        else rep[v[i]]=i;
-        ll mx=0,mn=n;
-        for(auto p:rep){mx=max(mx,p.second);mn=min(mn,p.second);}
-        if(cnt>=rp)ans=min(ans,mx-mn+1);
+        ps.push_back(v[i]+ps[i]);
     }
-    cout<<ans<<"\n";
+    ll dp[n+1]={0};
+    // dp[1]=ps[1];
+    for(int i=1;i<=n;i++)
+    {
+        dp[i]=ps[i]+dp[max(i-k,0LL)];
+        cout<<dp[i]<<" ";
+    }
+    cout<<"\n";
 }
 
 
