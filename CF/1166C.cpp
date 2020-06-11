@@ -2,14 +2,14 @@
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
 // ./a.out >input <output
-/*comments:
+/*comments:not done yet
 */
 
 
 
 #include<bits/stdc++.h>
 using namespace std; 
-#define mod 1000000007
+#define ma 1000000000
 #define gcd(a,b) __gcd(a,b)
 #define lcm(a,b) (a*(b/gcd(a,b))
 #define bits(x) __builtin_popcountll(x)
@@ -17,45 +17,41 @@ using namespace std;
 #define vl              vector<ll>
 #define all(v)          v.begin(),v.end()
 #define UNIQUE(X)       (X).erase(unique(all(X)),(X).end())
+#define a(x) abs(x)
 
-#define mz 1000000000
 
 typedef long long int ll;
 vector<ll> v;
-ll check(ll a,ll b)
+ll n,t;
+ll check(ll x,ll y)
 {
-    ll mn=min(min(abs(a+b),abs(a-b)),min(abs(b-a),abs(b+a))),mx=max(max(abs(a+b),abs(a-b)),max(abs(b-a),abs(b+a)));
-    // cout<<a<<" "<<b<<" "<<mx<<" "<<mn<<"\n";
-    if(mn<=min(abs(a),abs(b)) && mx>=max(abs(a),abs(b)))return 1;
-    return 0;
+    return (max(a(x+y),a(x-y))>=max(a(x),a(y))&& min(a(x+y),a(x-y))<=min(a(x),a(y)));
 }
-ll bs(ll s, ll e ,ll no)
+ll bs(ll s,ll e)
 {
-    ll a=0,sz=e+1;
-    while (s<=e)
+    ll f=n,t=(v[s-1]);
+
+    while(s<=e)
     {
         ll m=(s+e)/2;
-        if(check(v[m],no))
-        {
-            e=m;
-            a=max(a,sz-m);
-        }
+        if(check(t,v[m]))
+            {e=m-1;f=max(f,m);}
         else 
-        {
             s=m+1;
-        }
-        if(s==e)break;
     }
-    return max(a,0LL);
+
 }
 void solve()
 {
-    ll t,ans=0,n;cin>>n;    
-    for(int i=0;i<n;i++){cin>>t;v.push_back(t);}
+    cin>>n;
+    ll ans=0;
+    for(int i=0;i<n;i++){cin>>t;v.push_back(t+ma);}
     sort(v.begin(),v.end());
     for(int i=0;i<n;i++)
     {
-        ans+=bs(i+1,n-1,v[i]);
+        // cout<<i<<" "<<bs(i,n-1)<<" ";
+        ans+=max(n-bs(i+1,n-1)-1,0LL);
+        // cout<<ans<<"\n";
     }
     cout<<ans<<"\n";
 }
