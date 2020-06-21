@@ -1,6 +1,7 @@
 // link:
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
+// ./a.out >input <output
 /*comments:
 */
 
@@ -22,8 +23,18 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    
-
+    ll n,m,t;cin>>n>>m;
+    vector<ll>v;for(int i=0;i<n;i++){cin>>t;v.push_back(t);}
+    ll dp[100]={0};
+    for(int i=1;i<=m;i++)
+    {
+        dp[i]=INT32_MAX;
+        for(int j=0;j<n;j++)
+        {
+            if(i-v[j]>=0)dp[i]=min(dp[i],dp[i-v[j]]+1);
+        }
+    }    
+    cout<<dp[m]<<"\n";
 }
 
 

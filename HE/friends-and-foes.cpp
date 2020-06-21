@@ -46,7 +46,7 @@ int main()
 		int b = func(v);
 		if(a == b) {
 			check[a] = false;
-`		}
+		}
 	}
 	int ans = 0;
 	for(i    = 1; i <= n; i++) {
