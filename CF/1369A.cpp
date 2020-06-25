@@ -21,28 +21,10 @@ using namespace std;
 
 
 typedef long long int ll;
-class Node
-{
-    public :
-        ll data;
-        Node* left;
-        Node* right;
-    Node(ll data)
-    {
-        this->data=data;
-        left=nullptr;
-        right=nullptr;
-    }
-};
 void solve()
 {
-    ll n,t;cin>>n;
-    queue<ll> q;
-    for(int i=0;i<n;i++)
-    {
-        cin>>t;
-
-    }
+    ll n;cin>>n;
+    cout<<(n%4!=0 ? "NO\n":"YES\n");
 
 }
 
@@ -51,9 +33,9 @@ int main()
 { 
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    // ll t;cin>>t;
+    ll t;cin>>t;
     // cout<<t<<"Hi test complete\n";
-    // while(t--)
+    while(t--)
         {
             solve();
         }
