@@ -8,5 +8,14 @@
         "tuple": "cpp",
         "iosfwd": "cpp"
     },
-    "competitive-programming-helper.firstTime": false
+    "competitive-programming-helper.firstTime": false,
+    "git.enableStatusBarSync": false,
+    "git.ignoredRepositories": [
+        "*.* ,*"
+    ],
+    "git.showCommitInput": false,
+    "git.showProgress": false,
+    "git.untrackedChanges": "hidden",
+    "github.gitAuthentication": false,
+    "git.autoRepositoryDetection": false
 }
