@@ -21,25 +21,30 @@ using namespace std;
 
 
 typedef long long int ll;
+void print(ll n,char c)
+{
+    for(int i=0;i<n;i++)
+        cout<<c;
+    cout<<"\n";
+}
 void solve()
 {
-    ll n,t,a,off=0,m,f=0,ans=0;cin>>n>>m;
-    vector<ll> v;
-    for(int i=0;i<n;i++){cin>>t;
-         v.push_back(t);
-    }
-    set<ll> s(v.begin(),v.end());
-    vector<ll> d(s.begin(),s.end());
-    reverse(d.begin(),d.end());
-    // if(n-f==0){cout<<"1\n";return;}
-    // if(n-f==1){cout<<"2\n";return;}
-    for(int i=0;i<d.size();i++)
+    map<char,char>mp;
+    ll freq[3]={0};
+    mp['R']='P';
+    mp['S']='R';
+    mp['P']='S';
+    string s;cin>>s;
+    ll n=s.length();
+    for(auto i:s)
     {
-        if(d[i]-off>0){ans++;off+=m;}
-        else break;
+        if(i=='R')freq[0]++;
+        if(i=='S')freq[1]++;
+        if(i=='P')freq[2]++;
     }
-    cout<<(ans)<<"\n";
-
+    if(freq[0]>=freq[1] && freq[0]>=freq[2] )print(n,'P');
+    else if(freq[1]>=freq[0] && freq[1]>=freq[2] )print(n,'R');
+    else print(n,'S');
 }
 
 

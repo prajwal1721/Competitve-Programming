@@ -23,23 +23,29 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll n,t,a,off=0,m,f=0,ans=0;cin>>n>>m;
-    vector<ll> v;
-    for(int i=0;i<n;i++){cin>>t;
-         v.push_back(t);
+    ll n,t,cnt=0,st=0,f=0,f2=0;cin>>n;
+    vector<ll> v;for(int i=0;i<n;i++){cin>>t;v.push_back(t);
+        if(1+i!=t){if(st==0)st=i+1;f2=1;}
+        else{cnt++;f=1;}
     }
-    set<ll> s(v.begin(),v.end());
-    vector<ll> d(s.begin(),s.end());
-    reverse(d.begin(),d.end());
-    // if(n-f==0){cout<<"1\n";return;}
-    // if(n-f==1){cout<<"2\n";return;}
-    for(int i=0;i<d.size();i++)
+    if(cnt==n)cout<<"0\n";
+    else if(!f && f2 )cout<<"1\n";
+    else
     {
-        if(d[i]-off>0){ans++;off+=m;}
-        else break;
+        ll c=1;
+        for(int i=st-1;i<n;i++)
+        {
+            // cout<<v[i]<<" "<<i+1<<"\n";
+            if(i+1!=v[i] && c){
+                while(i<n && v[i]!=i+1){i++;}
+                if(i==n){cout<<"1\n";return ;}
+                c=0;
+            }
+            else if(i+1!=v[i]){cout<<"2\n";return;}
+        }
+        // if(c==0){cout<<"1\n";return ;}
+        cout<<"1\n";
     }
-    cout<<(ans)<<"\n";
-
 }
 
 
