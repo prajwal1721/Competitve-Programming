@@ -2,7 +2,8 @@
 // [prajwal1721]
 // g++ -Wall -Wextra -Wshadow filename.cpp
 // ./a.out >input <output
-/*comments:
+/*comments: not done 
+some cases are missing 
 */
 
 
@@ -21,21 +22,21 @@ using namespace std;
 
 
 typedef long long int ll;
+
 void solve()
 {
-    ll n,t,m,ans=0;cin>>n>>m;
-    vector<ll> v;for(int i=0;i<n;i++){cin>>t;v.push_back(t);}
-    // ll dp[n+1]={0};
-    for(int i=1;i<n;i++){
-        if(v[i]+v[i-1]<m){
-            ans+=(m-v[i]-v[i-1]);
-            v[i]+=(m-v[i]-v[i-1]);
-        }
+    ll n,m;cin>>n;
+    vector<string> s;
+    ll dp[26],visit[26]={0};
+    for(int i=0;i<26;i++){dp[i]=i;}
+    for(int i=0;i<n;i++){
+        string t;cin>>t;
+        s.push_back(t);
     }
-    cout<<ans<<'\n';
-    for(int i=0;i<n;i++)cout<<v[i]<<" ";cout<<'\n';
-    
+    for(int i=0;i<n;i++)    
 }
+
+
 int main()
 { 
     ios::sync_with_stdio(false);

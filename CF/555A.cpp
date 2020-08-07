@@ -21,21 +21,30 @@ using namespace std;
 
 
 typedef long long int ll;
+ll arr[100005]={0};
 void solve()
 {
-    ll n,t,m,ans=0;cin>>n>>m;
-    vector<ll> v;for(int i=0;i<n;i++){cin>>t;v.push_back(t);}
-    // ll dp[n+1]={0};
-    for(int i=1;i<n;i++){
-        if(v[i]+v[i-1]<m){
-            ans+=(m-v[i]-v[i-1]);
-            v[i]+=(m-v[i]-v[i-1]);
+    ll ans=0,f=1,red=0,n,t,m;cin>>n>>m;
+    for(int i=0;i<m;i++){
+        ll k,t1;
+        cin>>k;
+        ans+=k-1;
+        for(int j=0;j<k;j++){
+            cin>>t1;
+            arr[t1]=i+1;
         }
     }
-    cout<<ans<<'\n';
-    for(int i=0;i<n;i++)cout<<v[i]<<" ";cout<<'\n';
-    
+    f=arr[1];
+    for(int i=2;i<=n;i++){
+        if(f==arr[i])red+=2;
+        else break;
+    }
+    cout<<ans+n-1-red<<'\n';
+
+
 }
+
+
 int main()
 { 
     ios::sync_with_stdio(false);
