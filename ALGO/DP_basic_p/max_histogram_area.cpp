@@ -26,45 +26,54 @@ void solve()
     ll n,t;cin>>n;
     vector<ll> v;
     for(int i=0;i<n;i++){cin>>t;v.push_back(t);}
-    stack<ll> st;
-    ll c=0,area=0,mx=0;
-    for(int i=1;i<=n;)
-    {
-        if(st.empty() || v[st.top()-1]<=v[i-1])
-            st.push(i++);
-        else 
-        {
-            if(st.size()==1)
-            {
-                area=v[st.top()-1]*(i-1);
-                st.pop();
-            }
-            else
-            {
-                area=v[st.top()-1]*(i-st.top()+1);
-                st.pop();
-            }
-            mx=max(mx,area);
-        }
-    // cout<<st.size()<<" ";/
-
-    }
-    // cout<<mx<<" ";       
-    while(!st.empty())
-    {
-               if(st.size()==1)
-            {
-                area=v[st.top()-1]*n;
-                st.pop();
-            }
-            else
-            {
-                area=v[st.top()-1]*(n-st.top()+1);
-                st.pop();
-            }
-            mx=max(mx,area);
-    }
-    cout<<mx<<"\n";
+    stack<int> s;
+                int maxArea = 0;
+                int area = 0;
+                int i;
+                for(i=0; i < heights.size();){
+                    if(s.empty() || heights[s.top()] <= heights[i]){
+                        s.push(i++);
+                    }else{
+                        int top = s.top();
+                        s.pop();      
+                        //if stack is empty means everything till i has to be
+                        //greater or equal to heights[top] so get area by
+                        //heights[top] * i;
+                        if(s.empty()){
+                            area = heights[top] * i;
+                        }
+                        //if stack is not empty then everythin from i-1 to   heights.top() + 1
+                        //has to be greater or equal to heights[top]
+                        //so area = heights[top]*(i - stack.top() - 1);
+                        else{
+                            area = heights[top] * (i - s.top() - 1);
+                        }
+                        if(area > maxArea){
+                            maxArea = area;
+                        }
+                    }
+                }
+                while(!s.empty()){
+                    int top = s.top();
+                    s.pop();
+                    //if stack is empty means everything till i has to be
+                    //greater or equal to heights[top] so get area by
+                    //heights[top] * i;
+                    if(s.empty()){
+                        area = heights[top] * i;
+                    }
+                    //if stack is not empty then everything from i-1 to       height.top() + 1
+                    //has to be greater or equal to heights[top]
+                    //so area = heights[top]*(i - stack.top() - 1);
+                    else{
+                        area = heights[top] * (i - s.top() - 1);
+                    }
+                if(area > maxArea){
+                        maxArea = area;
+                    }
+                }
+                return maxArea;
+    cout<<maxArea<<"\n";
 
 }
 

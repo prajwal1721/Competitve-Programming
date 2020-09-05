@@ -23,11 +23,11 @@ using namespace std;
 typedef long long int ll;
 ll findPivot(vector<ll> a,ll st,ll ed)
 {
-    if(st>ed)return  a[0];
-    if(st==ed)return  a[st];
+    if(st>ed)return  0;
+    if(st==ed)return st;
     ll m=(st+ed)/2;
-    if(m+1<=ed && a[m]>a[m+1])return  a[m+1];
-    if(m-1>=st && a[m]<a[m-1])return  a[m];
+    if(m+1<=ed && a[m]>a[m+1])return  m+1;
+    if(m-1>=st && a[m]<a[m-1])return  m;
     // cout<<m<<" ";
     if(a[ed]<a[m])
         return findPivot(a,m+1,ed);
