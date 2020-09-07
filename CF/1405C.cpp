@@ -23,28 +23,33 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll n,t,m;cin>>n;
-    vector<ll> pos,neg,v;
-    for(int i=0;i<n;i++){
-        cin>>t;
-        v.push_back(t);
-        if(t>0)pos.push_back(i);
-        else if(t<0)neg.push_back(i);
-    }
-    ll ans=0;
-    int j=0;
-    for(int i=0;i<neg.size();){
-        // cout<<i<<" "<<j<<'\n';
-        if(j==pos.size() || pos[j]>neg[i]){ans+=abs(v[neg[i]]);i++;}
-        else{
-            int mn=min(v[pos[j]],abs(v[neg[i]]));
-            v[pos[j]]-=mn;
-            v[neg[i]]+=mn;
-            j+=(v[pos[j]]==0);
-            i+=(v[neg[i]]==0);
+    ll cnt1=0,cnt0=0,q=0,n,t,m;cin>>n>>m;
+    string s;cin>>s;
+
+    for(int i=0;i<m;i++){
+        int tmp=-1;
+        for(int j=i;j<n;j+=m){
+            if(s[j]!='?' && tmp==-1){
+                tmp=s[j]-'0';
+            }
+            else if(s[j]!='?' && s[j]-'0'!=tmp){cout<<"NO\n";return ;}
+        }
+        if(tmp!=-1)
+        for(int j=i;j<n;j+=m){
+            s[j]=(char)(tmp+'0');
         }
     }
-    cout<<ans<<"\n";
+    // cout<<s<<"\n";
+    for(int i=0;i<m;i++){
+        if(s[i]=='?'){q++;continue;}
+        cnt0+=!(s[i]-'0');
+        cnt1+=(s[i]-'0');
+    }
+    // cout<<q<<" "<<cnt0<<" "<<cnt1<<"\n";
+    if(q-abs(cnt0-cnt1)<0 || (q-abs(cnt0-cnt1))%2)
+        {cout<<"NO\n";return ;}
+    cout<<"YES\n";
+
 }
 
 
