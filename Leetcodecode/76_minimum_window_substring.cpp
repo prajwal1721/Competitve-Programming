@@ -1,4 +1,6 @@
 // THIS CODE IS WORKING FINE FOR CAPITAL LETTER CASE NEED TO CHANGE A BIT GOR MIXED CASE
+// GOOD Q 
+// 
 #include<bits/stdc++.h>
 using namespace std;
    string minWindow(string s, string t) {
