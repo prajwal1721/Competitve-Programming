@@ -11,6 +11,7 @@ int main()
     while(scanf("%lld",&n)!=EOF)
     {
         cout<<ans(n)<<"\n";
+        p.clear();
     }
 }
 ll ans(ll a)
