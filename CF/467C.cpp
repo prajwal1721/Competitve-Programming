@@ -4,8 +4,6 @@
 // ./a.out >input <output
 /*comments:
 */
-// 648bbcc9cb1d50e58e08df0489e1031eb7095f19f139fa2657dcc9a1372a4fd8
-
 
 #include<bits/stdc++.h>
 using namespace std; 
@@ -23,16 +21,37 @@ using namespace std;
 typedef long long int ll;
 void solve()
 {
-    ll n,t,f=-1,m;cin>>n>>m;
-    ll a[1003]={0};
-    for(int i=0;i<n;i++){cin>>t;a[t]++;}
-    for(int i=0;i<m;i++){cin>>t;
-        if(a[t]!=0){
-            f=t;
+    ll n,t,t1,m,k;
+    cin>>n>>m>>k;
+    vector<ll> v;
+    v.push_back(0);
+    ll dp[k+1][n+2];
+    for(int i=0;i<k;i++){
+        for(int j=0;j<n;j++)dp[i][j]=0;
+    }
+    for(int i=0;i<n;i++){
+        cin>>t;
+        v.push_back(t+v[i]);
+    }
+
+// knapsack 
+    for(int i=m;i<=n;i++){
+        dp[0][i]=max(v[i]-v[i-m],dp[0][i-1]);
+    }
+    
+    for(int i=1;i<k;i++){
+        for(int j=m;j<=n;j++){
+                dp[i][j]=max(dp[i-1][j-m]+v[j]-v[j-m],dp[i][j-1]);
         }
     }
-    if(f==-1){cout<<"NO\n";return;}
-    cout<<"YES\n1 "<<f<<"\n";
+    // for(int i=0;i<=k;i++){
+    //     for(int j=0;j<=n;j++){
+    //         cout<<dp[i][j]<<" ";
+    //     }
+    //     cout<<"\n";
+    // }
+
+    cout<<dp[k-1][n]<<"\n";
 }
 
 
@@ -40,9 +59,9 @@ int main()
 { 
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    ll t;cin>>t;
+    // ll t;cin>>t;
     // cout<<t<<"Hi test complete\n";
-    while(t--)
+    // while(t--)
         {
             solve();
         }
